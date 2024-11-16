@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { toaster } from "@/components/ui/toaster";
+import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -22,27 +22,22 @@ export const SignupForm = () => {
         data,
         { withCredentials: true }
       );
-      toaster.create({
-        title: res.data.msg,
-        type: "success",
-      });
+      toast.success(res.data.msg);
       if (res.status === 200) {
         navigate("/home");
       }
     } catch (error) {
-      toaster.create({
-        title: error.response.data.msg,
-        type: "error",
-      });
+      toast.error(error.response.data.msg);
     }
   };
 
   const handleInputBlur = async (fieldName) => {
     const isValid = await trigger(fieldName); // Validate a specific field
     if (!isValid && errors[fieldName]) {
-      toaster.create({
-        title: errors[fieldName]?.message,
-        type: "warning",
+      toast(errors[fieldName]?.message, {
+        style: {
+          backgroundColor: '#fd7f20' 
+        }
       });
     }
   };
