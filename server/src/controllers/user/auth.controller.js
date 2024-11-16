@@ -86,6 +86,12 @@ const signup = async (req, res) => {
 
         return res.status(200).json({
             msg: "Account created successfully! Check your email to verify.",
+            data: {
+                firstName: savedUser.firstName,
+                lastName: savedUser.lastName,
+                email: savedUser.email,
+                avatar: savedUser.avatar
+            }
         });
     } catch (error) {
         return res.status(500).json({

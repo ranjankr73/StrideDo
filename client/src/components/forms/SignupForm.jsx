@@ -1,8 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signupUser } from "../../features/user/authSlice";
 
 export const SignupForm = () => {
   const {
@@ -12,23 +13,13 @@ export const SignupForm = () => {
     trigger,
   } = useForm();
 
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
+
   const navigate = useNavigate();
   
   const signup = async (data) => {
-
-    try {
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/auth/create-account",
-        data,
-        { withCredentials: true }
-      );
-      toast.success(res.data.msg);
-      if (res.status === 200) {
-        navigate("/home");
-      }
-    } catch (error) {
-      toast.error(error.response.data.msg);
-    }
+    dispatch(signupUser(data));
   };
 
   const handleInputBlur = async (fieldName) => {
@@ -127,9 +118,10 @@ export const SignupForm = () => {
       {/* Submit Button */}
       <button
         type="submit"
+        disabled={loading}
         className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300"
       >
-        Sign Up
+        {loading ? 'Signing up...' : 'Sign Up'}
       </button>
     </form>
   );

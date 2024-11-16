@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../features/user/authSlice";
 
 export const LoginForm = () => {
   const {
@@ -12,24 +14,13 @@ export const LoginForm = () => {
     trigger,
   } = useForm();
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
   
+  const navigate = useNavigate();
+
   const login = async (data) => {
-
-    try {
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/auth/login",
-        data,
-        { withCredentials: true }
-      );
-      toast.success(res.data.msg);
-
-      if (res.status === 200) {
-        navigate("/home");
-      }
-    } catch (error) {
-      toast.error(error.response.data.msg);
-    }
+    dispatch(loginUser(data));
   };
 
   const handleInputBlur = async (fieldName) => {
