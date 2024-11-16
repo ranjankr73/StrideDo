@@ -1,0 +1,33 @@
+# Root-level logs
+logs/
+*.log
+
+# Ignore dependencies and build directories for both
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+backend/node_modules/
+backend/dist/
+backend/build/
+
+# Ignore environment files
+frontend/.env
+backend/.env
+
+# Ignore static uploads
+frontend/public/static/uploads/
+backend/public/uploads/
+
+# IDE and OS-specific files
+.idea/
+.vscode/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Coverage outputs
+frontend/coverage/
+backend/coverage/

@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+.pnp/
+.pnp.js
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.DS_Store
+
+# Database files
+*.sqlite
+*.sqlite3
+db.sqlite
+db.sqlite3
+
+# Temporary files
+/tmp
+/temp
+
+# Build directories
+dist/
+build/
+
+# Coverage output
+coverage/
+
+# Static files and uploads
+/public/uploads/
