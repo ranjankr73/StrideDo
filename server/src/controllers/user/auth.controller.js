@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { validate } from "email-validator";
-
 import { User } from "../../models/user.model.js";
 
 import {
@@ -26,10 +25,10 @@ const signup = async (req, res) => {
         }
 
         const validEmail = validate(email);
-        if(!validEmail) {
+        if (!validEmail) {
             return res.status(401).json({
-                msg: "Please enter a valid email"
-            })
+                msg: "Please enter a valid email",
+            });
         }
 
         const existedUser = await User.findOne({ email: email });
@@ -65,17 +64,15 @@ const signup = async (req, res) => {
 
         await savedUser.save();
 
-        res
-        .cookie("refreshToken", refreshToken, {
+        res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: false,
-            sameSite: "None", // Or 'Lax' based on your needs
-        })
-        .cookie("accessToken", accessToken, {
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: "Lax",
+        }).cookie("accessToken", accessToken, {
             httpOnly: true,
-            secure: false,
+            secure: process.env.NODE_ENV === 'production',
             maxAge: 24 * 60 * 60 * 1000,
-            sameSite: "None",
+            sameSite: "Lax",
         });
 
         if (!savedUser) {
@@ -90,8 +87,8 @@ const signup = async (req, res) => {
                 firstName: savedUser.firstName,
                 lastName: savedUser.lastName,
                 email: savedUser.email,
-                avatar: savedUser.avatar
-            }
+                avatar: savedUser.avatar,
+            },
         });
     } catch (error) {
         return res.status(500).json({
@@ -111,10 +108,10 @@ const login = async (req, res) => {
         }
 
         const validEmail = validate(email);
-        if(!validEmail) {
+        if (!validEmail) {
             return res.status(401).json({
-                msg: "Please enter a valid email"
-            })
+                msg: "Please enter a valid email",
+            });
         }
 
         const existedUser = await User.findOne({ email: email });
@@ -144,12 +141,11 @@ const login = async (req, res) => {
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: false,
-            sameSite: "Lax", // Or 'Lax' based on your needs
-        })
-        .cookie("accessToken", accessToken, {
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: "Lax",
+        }).cookie("accessToken", accessToken, {
             httpOnly: true,
-            secure: false,
+            secure: process.env.NODE_ENV === 'production',
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: "Lax",
         });
@@ -161,6 +157,40 @@ const login = async (req, res) => {
         res.status(500).json({
             msg: "Internal server error while logging into your account!",
         });
+    }
+};
+
+const logout = async (req, res) => {
+    try {
+        const userId = req.user.userId;
+        const refreshToken = req.cookies.refreshToken;
+
+        if (!refreshToken) {
+            return res.status(400).json({ msg: "No refresh token provided" });
+        }
+
+        const existedUser = await User.findById(userId);
+        console.log(existedUser);
+        if (!existedUser) {
+            return res.status(404).json({ msg: "User does not exist" });
+        }
+
+        existedUser.refreshToken = null;
+        await existedUser.save();
+
+        res.clearCookie("refreshToken", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: "Lax",
+        }).clearCookie("accessToken", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: "Lax",
+        });
+
+        return res.status(200).json({ msg: "Logged out successfully" });
+    } catch (error) {
+        return res.status(500).json({ msg: "Internal server error while logging out" });
     }
 };
 
@@ -382,6 +412,7 @@ const updateAccessToken = async (req, res) => {
 export {
     signup,
     login,
+    logout,
     verifyEmail,
     forgotPassword,
     resetPassword,

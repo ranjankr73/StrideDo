@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../features/user/authSlice";
+import { isAsyncThunkAction } from "@reduxjs/toolkit";
 
 export const SignupForm = () => {
   const {
@@ -14,7 +15,7 @@ export const SignupForm = () => {
   } = useForm();
 
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const { isAuthenticated, loading } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
   
@@ -32,6 +33,12 @@ export const SignupForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if(isAuthenticated){
+      navigate('/home');
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <form

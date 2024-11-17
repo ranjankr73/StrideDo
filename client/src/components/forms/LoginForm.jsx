@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../features/user/authSlice";
@@ -15,7 +14,7 @@ export const LoginForm = () => {
   } = useForm();
 
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const { isAuthenticated, loading } = useSelector((state) => state.auth);
   
   const navigate = useNavigate();
 
@@ -33,6 +32,12 @@ export const LoginForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+        navigate("/home");
+    }
+}, [isAuthenticated, navigate]);
 
   return (
     <form
@@ -87,9 +92,10 @@ export const LoginForm = () => {
       {/* Submit Button */}
       <button
         type="submit"
+        disabled={loading}
         className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300"
       >
-        Log In
+        {loading ? 'Logging In...' : 'Log In'}
       </button>
     </form>
   );
