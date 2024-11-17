@@ -170,7 +170,6 @@ const logout = async (req, res) => {
         }
 
         const existedUser = await User.findById(userId);
-        console.log(existedUser);
         if (!existedUser) {
             return res.status(404).json({ msg: "User does not exist" });
         }
