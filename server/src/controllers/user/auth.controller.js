@@ -137,7 +137,7 @@ const login = async (req, res) => {
         const refreshToken = generateRefreshToken(existedUser);
 
         existedUser.refreshToken = refreshToken;
-        await existedUser.save();
+        const savedUser = await existedUser.save();
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
@@ -152,6 +152,12 @@ const login = async (req, res) => {
 
         return res.status(200).json({
             msg: "You have been logged in successfully!",
+            data: {
+                firstName: savedUser.firstName,
+                lastName: savedUser.lastName,
+                email: savedUser.email,
+                avatar: savedUser.avatar,
+            },
         });
     } catch (error) {
         res.status(500).json({

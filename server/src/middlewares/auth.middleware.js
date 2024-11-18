@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 const getLoggedInUser = (req, res, next) => {
     try {
         const token = (req.cookies.accessToken);
-        console.log(req.cookies);
         if(!token) {
             return res.status(404).json({
                 msg: "Token is not found"
