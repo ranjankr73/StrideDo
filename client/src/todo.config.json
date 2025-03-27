@@ -1,0 +1,119 @@
+{
+    "colorSchemes": {
+      "todoistTheme": {
+        "primary": {
+          "background": ["#FFFFFF", "#F8F9FA"],
+          "text": ["#2D3436", "#333333"],
+          "accent": ["#E44332", "#2EC4B6", "#6C63FF"],
+          "secondary": {
+            "borders": "#E8E8E8",
+            "text": "#6C757D",
+            "completed": "#4CAF50"
+          },
+          "hoverStates": "10% darker/lighter of accent color (e.g., #D63A2A)"
+        }
+      }
+    },
+    "typography": {
+      "pairings": [
+        {
+          "name": "Modern Sans-Serif",
+          "headings": {
+            "font": "Inter",
+            "weights": [600, 700]
+          },
+          "body": {
+            "font": "Roboto",
+            "weights": [400, 500]
+          },
+          "accents": {
+            "font": "Space Mono",
+            "useCase": "Dates/times",
+            "weight": 400
+          }
+        },
+        {
+          "name": "Elegant Serif Contrast",
+          "headings": {
+            "font": "Playfair Display",
+            "styles": ["Italic", "Bold"]
+          },
+          "body": {
+            "font": "Lato",
+            "weights": [300, 400]
+          }
+        },
+        {
+          "name": "Ultra-Minimalist",
+          "allText": {
+            "font": "Helvetica Neue",
+            "weights": {
+              "headings": "Thin",
+              "body": "Regular"
+            }
+          }
+        }
+      ],
+      "todoistFonts": {
+        "headings": {
+          "font": "Inter",
+          "weights": [600, 700],
+          "sizes": [24, 32]
+        },
+        "body": {
+          "font": "Roboto",
+          "weights": [400, 500],
+          "sizes": [16, 18]
+        },
+        "labels": {
+          "font": "Space Mono",
+          "weight": 400,
+          "sizes": [12, 14]
+        }
+      }
+    },
+    "uiComponents": {
+      "taskCard": {
+        "shadow": "0 2px 8px rgba(0, 0, 0, 0.1)",
+        "borderRadius": "8px",
+        "icons": "Minimalist line icons (checkboxes, priority flags)"
+      },
+      "addTaskButton": {
+        "type": "Floating Action Button (FAB)",
+        "color": "#E44332",
+        "icon": "Plus (+)",
+        "size": "Larger than standard buttons"
+      },
+      "priorityIndicators": {
+        "colors": {
+          "P1": "#FF5252",
+          "P2": "#FFA726"
+        },
+        "style": "Color-coded dots/stripes"
+      },
+      "navigationSidebar": {
+        "background": "#F5F5F5",
+        "dividers": "Subtle vertical lines",
+        "activeHighlight": "Accent color"
+      }
+    },
+    "designPrinciples": {
+      "whitespace": "Generous padding/margins (16px–24px)",
+      "shadows": "Soft shadows (e.g., box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05))",
+      "icons": "Feather Icons or Material Symbols",
+      "animations": "Smooth transitions (0.3s ease-in-out)",
+      "microInteractions": {
+        "checkbox": "Ripple effect",
+        "quickAdd": "Always visible task bar"
+      },
+      "colorCoding": "Muted accent colors for tags (e.g., #FFE0E0)",
+      "accessibility": "Contrast ratio ≥ 4.5:1 for text"
+    },
+    "darkMode": {
+      "background": "#1A1A1A",
+      "text": "#E0E0E0",
+      "accent": "#FF6B6B",
+      "dividers": "#333333",
+      "notes": "Similar to Todoist Premium's dark theme"
+    }
+  }

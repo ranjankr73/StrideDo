@@ -1,13 +1,15 @@
 import express from "express";
 import { getLoggedInUser } from "../middlewares/auth.middleware.js";
-import { createTask, deleteTask, filterTasks, getTasks, updateTask, viewTask } from "../controllers/task/task.controller.js";
+import { createTask, deleteTask, filterTasks, getTasks, updateTask, viewTask } from "../controllers/task.controller.js";
 
 const router = express.Router();
 
-router.post("/create-task", getLoggedInUser, createTask);
+router.post("/", getLoggedInUser, createTask);
+router.get("/", getLoggedInUser, getTasks);
 router.put("/:taskId", getLoggedInUser, updateTask);
 router.delete("/:taskId", getLoggedInUser, deleteTask);
-router.get("/all-tasks", getLoggedInUser, getTasks);
+
+// Advanced features
 router.get("/filter-tasks", getLoggedInUser, filterTasks);
 router.get("/:taskId", getLoggedInUser, viewTask);
 

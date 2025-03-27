@@ -36,6 +36,17 @@ const useAuthStore = create((set) => ({
         }
     },
 
+    updateAccessToken: async () => {
+        try {
+            set({ loading: true, error: null });
+            await api.post('/user/refresh-token');
+            set({ loading: false });
+        } catch (error) {
+            window.location.href = '/signin';
+            set({ loading: false, error: error?.response?.data?.message });
+        }
+    },
+
     logout: async () => {
         try {
             set({ loading: true, error: null });

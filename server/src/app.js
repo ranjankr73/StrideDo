@@ -19,7 +19,7 @@ import authRouter from "./routes/auth.route.js";
 import taskRouter from "./routes/task.route.js";
 
 //routes
-app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", authRouter);
 app.use("/api/v1/task", taskRouter);
 
 export { app };

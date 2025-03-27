@@ -2,13 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema(
     {
-        firstName: {
-            type: String,
-            required: true,
-            trim: true,
-            index: true,
-        },
-        lastName: {
+        fullName: {
             type: String,
             required: true,
             trim: true,
@@ -21,19 +15,9 @@ const userSchema = new Schema(
             lowercase: true,
             trim: true,
         },
-        avatar: {
-            type: String, //cloudinary URL
-            default: ""
-        },
         password: {
             type: String,
             required: [true, "Password is required"],
-        },
-        resetPasswordToken: {
-            type: String,
-        },
-        resetPasswordExpires: {
-            type: Date,
         },
         refreshToken: {
             type: String,

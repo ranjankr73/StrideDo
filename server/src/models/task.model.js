@@ -11,20 +11,17 @@ const taskSchema = new Schema(
             required: true,
         },
         priority: {
-            //Optional
             type: String,
-            enum: ["Low", "Medium", "High"],
-            default: "Medium",
+            enum: ["low", "medium", "high"],
+            default: "low",
         },
         description: {
-            //Optional
             type: String,
             default: ""
         },
-        status: {
-            type: String,
-            enum: ["Completed", "Pending"],
-            default: "Pending"
+        completed: {
+            type: Boolean,
+            default: false
         },
         createdBy: {
             type: Schema.Types.ObjectId,
