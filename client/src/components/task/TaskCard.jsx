@@ -9,45 +9,52 @@ const TaskCard = ({ task }) => {
 
   return (
     <>
-      <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6">
-        <div className="flex justify-between items-start mb-4">
-          <span className={`px-2 py-1 text-sm rounded-full 
-            ${task.priority === 'high' ? 'bg-red-100 text-red-700' :
-              task.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-              'bg-green-100 text-green-700'}`}>
+      <div className="bg-white rounded-xl border border-[var(--border-color)] shadow-sm hover:shadow-md transition-all p-5 font-montserrat">
+        <div className="flex justify-between items-start mb-3">
+          <span className={`px-2.5 py-1 text-xs font-medium rounded-full 
+            ${task.priority === 'high' ? 'bg-[var(--primary-color)/20] text-[var(--primary-color)]' :
+              task.priority === 'medium' ? 'bg-amber-100 text-amber-700' :
+              'bg-emerald-100 text-emerald-700'}`}>
             {task.priority}
           </span>
-          <div className="flex gap-2">
+          <div className="flex gap-1">
             <button 
               onClick={() => setShowTaskForm(true)}
-              className="text-gray-400 hover:text-indigo-600 transition-colors"
+              className="p-2 rounded-full text-[var(--text-secondary)] hover:bg-[var(--background-hover)] hover:text-[var(--primary-color)] transition-colors"
             >
-              <FiEdit />
+              <FiEdit className="w-4 h-4" />
             </button>
             <button 
               onClick={() => deleteTask(task._id)}
-              className="text-gray-400 hover:text-red-600 transition-colors"
+              className="p-2 rounded-full text-[var(--text-secondary)] hover:bg-red-100 hover:text-red-600 transition-colors"
             >
-              <FiTrash />
+              <FiTrash className="w-4 h-4" />
             </button>
           </div>
         </div>
         
-        <h3 className="font-semibold text-lg mb-2">{task.title}</h3>
-        <p className="text-gray-600 mb-4">{task.description}</p>
+        <h3 className="font-semibold text-[var(--text-primary)] mb-1.5">{task.title}</h3>
+        <p className="text-sm text-[var(--text-secondary)] mb-3">{task.description}</p>
         
         <div className="flex justify-between items-center">
-          <span className="text-sm text-gray-500">
-            Due: {new Date(task?.dueDate).toLocaleString('en-IN', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })}
+          <span className="text-xs text-[var(--text-secondary)]">
+            Due: {new Date(task?.dueDate).toLocaleString('en-IN', { 
+              year: 'numeric', 
+              month: '2-digit', 
+              day: '2-digit', 
+              hour: '2-digit', 
+              minute: '2-digit', 
+              hour12: false 
+            })}
           </span>
           <button
             onClick={() => toggleComplete(task._id, task.completed)}
-            className={`flex items-center gap-2 px-3 py-1 rounded-lg transition-colors
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-sm transition-colors
               ${task.completed 
-                ? 'bg-green-100 text-green-700' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                ? 'bg-emerald-100 text-emerald-700' 
+                : 'bg-[var(--primary-color)/10] text-[var(--primary-color)] hover:bg-[var(--primary-color)/20]'}`}
           >
-            <FiCheck className={task.completed ? 'text-green-500' : 'text-gray-400'} />
+            <FiCheck className={`w-4 h-4 ${task.completed ? 'text-emerald-500' : 'text-[var(--primary-color)]'}`} />
             {task.completed ? 'Completed' : 'Mark Complete'}
           </button>
         </div>
@@ -56,7 +63,7 @@ const TaskCard = ({ task }) => {
       {showTaskForm && (
         <TaskForm 
           task={task} 
-          onClose={setShowTaskForm}
+          onClose={() => setShowTaskForm(false)}
         />
       )}
     </>
