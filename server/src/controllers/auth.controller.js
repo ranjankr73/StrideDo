@@ -199,27 +199,26 @@ const updateAccessToken = async (req, res) => {
         const refreshToken = req.cookies.refreshToken;
 
         if (!refreshToken) {
-            return res.status(404).json({
+            return res.status(401).json({
                 message: "Refresh Token required",
+                code: "MISSING_REFRESH_TOKEN"
             });
         }
 
-        const existedUser = await User.findOne({ refreshToken: refreshToken });
-
-        if (!existedUser) {
-            return res.status(403).json({
-                message: "Invalid Refresh Token",
-            });
-        }
-
-        const decoded = jwt.verify(
-            refreshToken,
-            process.env.REFRESH_TOKEN_SECRET
-        );
-
-        if (!decoded) {
-            return res.status(403).json({
+        let decoded;
+        try {
+            decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+        } catch (error) {
+            return res.status(403).clearCookie("refreshToken").json({
                 message: "Invalid or expired refresh token",
+            });
+        }
+
+        const existedUser = await User.findById(decoded.userId);
+
+        if (!existedUser || existedUser.refreshToken !== refreshToken) {
+            return res.status(403).clearCookie("refreshToken").json({
+                message: "Invalid Refresh Token",
             });
         }
 
@@ -227,7 +226,6 @@ const updateAccessToken = async (req, res) => {
         const newRefreshToken = generateRefreshToken(existedUser);
 
         existedUser.refreshToken = newRefreshToken;
-
         await existedUser.save();
 
         res.cookie("refreshToken", newRefreshToken, {
@@ -244,7 +242,9 @@ const updateAccessToken = async (req, res) => {
         return res.status(200).json({
             message: "Access Token updated successfully",
         });
+
     } catch (error) {
+        console.error(error);
         return res.status(500).json({
             message: "Internal server error while updating access token!"
         });

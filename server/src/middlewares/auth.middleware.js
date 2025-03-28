@@ -4,7 +4,7 @@ const getLoggedInUser = (req, res, next) => {
     try {
         const token = req.cookies.accessToken;
         if(!token) {
-            return res.status(404).json({
+            return res.status(401).json({
                 message: "Token is not found"
             });
         }

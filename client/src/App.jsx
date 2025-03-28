@@ -7,20 +7,19 @@ function App() {
   const { initializeAuth, updateAccessToken } = useAuthStore();
 
   useEffect(() => {
-    const getCurrentUser = async () => {
-      try {
-        await initializeAuth();
-      } catch (error) {
-        await updateAccessToken();
+    const checkAuth = async () => {
+      const refreshed = await updateAccessToken();
+      if (refreshed) {
+        initializeAuth();
       }
     };
-
-    getCurrentUser();
+    
+    checkAuth();
   }, []);
 
   return (
     <>
-      <RouterProvider/>
+      <RouterProvider />
       <Toaster
         position="top-center"
         toastOptions={{
