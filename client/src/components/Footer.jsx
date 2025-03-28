@@ -5,104 +5,100 @@ import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-dark mt-24">
+    <footer className="bg-[var(--background)] border-t border-[var(--border-color)] mt-24">
       <div className="container mx-auto px-4 md:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Column */}
-          <div className="md:col-span-1 space-y-6">
-            <NavLink to="/" className="flex items-center group">
-              <span className="text-3xl font-bold text-dark font-montserrat tracking-tight">
-                atithi
+          <div className="md:col-span-1 space-y-4">
+            <NavLink to="/" className="flex items-center">
+              <span className="text-xl font-bold text-[var(--primary-color)]">
+                TODO
               </span>
-              <span className="text-3xl font-bold text-accent font-montserrat tracking-tight">
-                bhava
+              <span className="text-xl font-bold text-[var(--text-primary)]">
+                ing
               </span>
             </NavLink>
-            <p className="font-open-sans text-dark/80 text-sm leading-relaxed">
-              Revolutionizing event management through seamless organization 
-              and guest coordination.
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Your simple, powerful task management solution. Stay organized and 
+              productive with intuitive todo management.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="font-montserrat text-lg font-semibold mb-4">Quick Links</h3>
-            <nav className="font-open-sans space-y-3">
-              <NavLink to="/about" className="block hover:text-accent transition-colors">
-                About Us
+          {/* Product Links */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
+              Product
+            </h3>
+            <nav className="space-y-2">
+              <NavLink to="/features" className="block text-sm text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
+                Features
               </NavLink>
-              <NavLink to="/services" className="block hover:text-accent transition-colors">
-                Services
+              <NavLink to="/pricing" className="block text-sm text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
+                Pricing
               </NavLink>
-              <NavLink to="/contact" className="block hover:text-accent transition-colors">
-                Contact
+              <NavLink to="/download" className="block text-sm text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
+                Download
               </NavLink>
-              <NavLink to="/blog" className="block hover:text-accent transition-colors">
+            </nav>
+          </div>
+
+          {/* Resources */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
+              Resources
+            </h3>
+            <nav className="space-y-2">
+              <NavLink to="/blog" className="block text-sm text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
                 Blog
               </NavLink>
+              <NavLink to="/support" className="block text-sm text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
+                Support
+              </NavLink>
+              <NavLink to="/documentation" className="block text-sm text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
+                Documentation
+              </NavLink>
             </nav>
           </div>
 
-          {/* Legal */}
+          {/* Contact */}
           <div className="space-y-4">
-            <h3 className="font-montserrat text-lg font-semibold mb-4">Legal</h3>
-            <nav className="font-open-sans space-y-3">
-              <NavLink to="/privacy" className="block hover:text-accent transition-colors">
-                Privacy Policy
-              </NavLink>
-              <NavLink to="/terms" className="block hover:text-accent transition-colors">
-                Terms of Service
-              </NavLink>
-              <NavLink to="/security" className="block hover:text-accent transition-colors">
-                Security
-              </NavLink>
-            </nav>
-          </div>
-
-          {/* Contact & Social */}
-          <div className="space-y-6">
-            <h3 className="font-montserrat text-lg font-semibold">Connect With Us</h3>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 hover:text-accent transition-colors">
-                <FaPhone className="flex-shrink-0" />
-                <span>+91 730 101 1273</span>
-              </div>
-              <div className="flex items-center gap-3 hover:text-accent transition-colors">
+            <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+              Contact
+            </h3>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
                 <IoMail className="flex-shrink-0" />
-                <span>support@atithibhava.com</span>
+                <span>support@todoing.app</span>
               </div>
             </div>
-            <div className="flex gap-4 mt-6 text-xl">
-              <FaTwitter className="hover:text-accent cursor-pointer transition-colors" />
-              <FaLinkedin className="hover:text-accent cursor-pointer transition-colors" />
-              <FaInstagram className="hover:text-accent cursor-pointer transition-colors" />
+            <div className="flex gap-4 mt-4 text-[var(--text-secondary)]">
+              <FaTwitter className="hover:text-[var(--primary-color)] cursor-pointer" />
+              <FaLinkedin className="hover:text-[var(--primary-color)] cursor-pointer" />
+              <FaInstagram className="hover:text-[var(--primary-color)] cursor-pointer" />
             </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-dark/20 my-8" />
+        <div className="border-t border-[var(--border-color)] my-8" />
 
         {/* Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p className="font-open-sans text-dark/80">
-            © {new Date().getFullYear()} Atithi Bhava. All rights reserved.
+          <p className="text-[var(--text-secondary)]">
+            © {new Date().getFullYear()} TODOing. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <NavLink to="/privacy" className="hover:text-accent transition-colors">
-              Privacy Policy
+            <NavLink to="/privacy" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
+              Privacy
             </NavLink>
-            <NavLink to="/terms" className="hover:text-accent transition-colors">
-              Terms of Service
-            </NavLink>
-            <NavLink to="/cookies" className="hover:text-accent transition-colors">
-              Cookie Policy
+            <NavLink to="/terms" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
+              Terms
             </NavLink>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer

@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import useAuthStore from "./store/auth";
 
 function App() {
-  const { initializeAuth, currentUser, updateAccessToken } = useAuthStore();
+  const { initializeAuth, updateAccessToken } = useAuthStore();
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -16,7 +16,7 @@ function App() {
     };
 
     getCurrentUser();
-  }, [initializeAuth]);
+  }, []);
 
   return (
     <>

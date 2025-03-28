@@ -14,6 +14,21 @@
   }
 }
 
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+:root {
+  --primary-color: #db4c3f;
+  --primary-hover: #c24438;
+  --background: #ffffff;
+  /* --text-primary: #2d333a; */
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+}
+
 .montserrat-heading {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -32,6 +47,10 @@
     background-color: #0f172a; /* Adjust to match your dark theme */
   }
   
-  .dark .sidebar-content {
-    background: linear-gradient(to bottom, #1e1b4b, #312e81);
-  }
+.dark .sidebar-content {
+  background: linear-gradient(to bottom, #1e1b4b, #312e81);
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

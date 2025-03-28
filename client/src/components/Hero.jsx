@@ -3,33 +3,35 @@ import { NavLink } from 'react-router-dom'
 
 const Hero = () => {
   return (
-    <section className="bg-primary/10 py-24 md:py-24 lg:py-32">
+    <section className="bg-[var(--background)] py-16 md:py-24 lg:py-32 border-b border-[var(--border-color)]">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <h1 className="font-montserrat text-4xl md:text-5xl lg:text-6xl font-bold text-dark space-y-6">
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text-primary)]">
               <div className="leading-tight">
-                Plan{' '}
-                <span className="text-accent block mt-4 md:mt-6">Unforgettable</span>
-                <span className="block">Events</span>
+                Organize Your
+                <span className="block mt-4 text-[var(--primary-color)]">Tasks &amp; Projects</span>
               </div>
-              <span className="block text-secondary mt-8 md:mt-12">Effortlessly</span>
+              <span className="block text-[var(--text-secondary)] text-3xl md:text-4xl mt-6">
+                Achieve More Everyday
+              </span>
             </h1>
             
-            <p className="font-open-sans text-lg md:text-xl text-dark/80 mt-8">
-              Create, manage, and perfect your events with our all-in-one platform
+            <p className="text-lg md:text-xl text-[var(--text-secondary)] mt-6">
+              Streamline your workflow with smart task management, priority sorting, 
+              and intuitive project organization.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-12">
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <NavLink
                 to="/signup"
-                className="px-8 py-4 bg-accent text-white rounded-full hover:bg-accent/90 transition-colors font-semibold"
+                className="px-6 py-3 bg-[var(--primary-color)] text-white rounded-full hover:bg-[var(--primary-hover)] transition-colors font-medium text-sm md:text-base"
               >
                 Start Free Trial
               </NavLink>
               <NavLink
                 to="/demo"
-                className="px-8 py-4 bg-dark text-white rounded-full hover:bg-dark/90 transition-colors font-semibold flex items-center gap-2"
+                className="px-6 py-3 bg-white text-[var(--text-primary)] rounded-full hover:bg-[var(--background)] transition-colors font-medium border border-[var(--border-color)] text-sm md:text-base flex items-center gap-2"
               >
                 Watch Demo
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -39,12 +41,14 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="relative">
-            <img 
-              src="\images\Neatly Organized Desk Setup_processed.png" 
-              alt="Event management dashboard"
-              className="rounded-xl w-full"
-            />
+          <div className="relative hidden md:block">
+            <div className="relative rounded-xl overflow-hidden bg-white p-4">
+              <img 
+                src="\images\Neatly Organized Desk Setup_processed.png" 
+                alt="TODOing app interface"
+                className="rounded-xl"
+              />
+            </div>
           </div>
         </div>
       </div>

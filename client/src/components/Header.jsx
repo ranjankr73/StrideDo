@@ -8,69 +8,73 @@ const Header = () => {
   const { currentUser } = useAuthStore();
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "Features", path: "features" },
+    { name: "Pricing", path: "pricing" },
     { name: "About", path: "about" },
-    { name: "Services", path: "services" },
     { name: "Contact", path: "contact" },
   ];
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-white shadow-sm">
-      {/* Desktop Header */}
+    <header className="fixed w-full top-0 z-50 bg-white shadow-sm border-b border-[var(--border-color)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <NavLink to="/" className="flex items-center group">
-            <span className="text-3xl font-bold text-primary font-montserrat tracking-tight">
-              atithi
+          <NavLink to="/" className="flex items-center">
+            <span className="text-2xl font-bold text-[var(--primary-color)]">
+              TODO
             </span>
-            <span className="text-3xl font-bold text-accent font-montserrat tracking-tight group-hover:text-primary transition-colors">
-             bhava
+            <span className="text-2xl font-bold text-[var(--text-primary)]">
+              ing
             </span>
           </NavLink>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `font-medium transition-colors ${
-                    isActive ? "text-accent" : "text-dark hover:text-accent"
+                  `text-sm font-medium transition-colors hover:text-[var(--primary-color)] ${
+                    isActive ? "text-[var(--primary-color)]" : "text-[var(--text-secondary)]"
                   }`
                 }
               >
                 {link.name}
               </NavLink>
             ))}
-          </div>
+          </nav>
 
           {/* Auth Buttons */}
-          {currentUser ? <div className="hidden md:flex items-center gap-4">
-            <NavLink
-              to="/dashboard"
-              className="px-6 py-2 rounded-full bg-accent text-white hover:bg-accent/90 transition-colors"
-            >
-              Dashboard
-            </NavLink>
-          </div> : <div className="hidden md:flex items-center gap-4">
-            <NavLink
-              to="/signin"
-              className="px-6 py-2 rounded-full bg-accent text-white hover:bg-accent/90 transition-colors"
-            >
-              Sign In
-            </NavLink>
-            <NavLink
-              to="/signup"
-              className="px-6 py-2 rounded-full bg-primary text-white hover:bg-primary/90 transition-colors"
-            >
-              Sign Up
-            </NavLink>
-          </div>}
+          <div className="hidden md:flex items-center gap-4">
+            {currentUser ? (
+              <NavLink
+                to="/dashboard"
+                className="px-4 py-2 rounded-full bg-[var(--primary-color)] text-white hover:bg-[var(--primary-hover)] transition-colors text-sm"
+              >
+                Dashboard
+              </NavLink>
+            ) : (
+              <>
+                <NavLink
+                  to="/signin"
+                  className="px-4 py-2 rounded-full text-[var(--primary-color)] hover:bg-[var(--background)] transition-colors text-sm"
+                >
+                  Sign In
+                </NavLink>
+                <NavLink
+  to="/signup"
+  className="px-4 py-2 rounded-full bg-[var(--primary-color)] text-white hover:bg-[var(--primary-hover)] transition-colors text-sm"
+>
+  Get Started
+</NavLink>
+              </>
+            )}
+          </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2 text-dark hover:text-accent transition-colors"
+            className="md:hidden p-2 text-[var(--text-primary)] hover:text-[var(--primary-color)]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -80,50 +84,59 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       <div
-        className={`md:hidden fixed inset-0 bg-black/50 transition-opacity
-        ${isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+        className={`md:hidden fixed inset-0 bg-black/50 transition-opacity ${
+          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
         onClick={() => setIsMenuOpen(false)}
       >
         <div
-          className={`absolute right-0 top-20 w-64 bg-white h-[calc(100vh-5rem)]
-          transform transition-transform ${
+          className={`absolute right-0 top-16 w-64 bg-white h-[calc(100vh-4rem)] transform transition-transform ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <nav className="flex flex-col p-4 gap-4">
+          <nav className="flex flex-col p-4 gap-2">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `p-3 rounded-lg hover:bg-primary/10 text-dark hover:text-accent
-                  ${isActive ? "bg-primary/10 text-accent" : ""}`
+                  `p-3 rounded-lg text-sm ${
+                    isActive
+                      ? "bg-[var(--primary-color)/10] text-[var(--primary-color)]"
+                      : "text-[var(--text-secondary)] hover:bg-[var(--background)]"
+                  }`
                 }
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
               </NavLink>
             ))}
-            {currentUser ? <div className="border-t pt-4 mt-4"><NavLink
-                to="/dashboard"
-                className="block w-full p-3 text-center rounded-lg bg-accent text-white hover:bg-accent/90 mb-4"
-              >
-                Dashboard
-              </NavLink></div> : <div className="border-t pt-4 mt-4">
-              <NavLink
-                to="/signin"
-                className="block w-full p-3 text-center rounded-lg bg-accent text-white hover:bg-accent/90 mb-4"
-              >
-                Sign In
-              </NavLink>
-              <NavLink
-                to="/signup"
-                className="block w-full p-3 text-center rounded-lg bg-primary text-white hover:bg-primary/90"
-              >
-                Sign Up
-              </NavLink>
-            </div>}
+            <div className="border-t pt-4 mt-2">
+              {currentUser ? (
+                <NavLink
+                  to="/dashboard"
+                  className="block w-full p-3 text-center rounded-lg bg-[var(--primary-color)] text-white hover:bg-[var(--primary-hover)] text-sm"
+                >
+                  Dashboard
+                </NavLink>
+              ) : (
+                <>
+                  <NavLink
+                    to="/signin"
+                    className="block w-full p-3 text-center rounded-lg text-[var(--primary-color)] hover:bg-[var(--background)] mb-2 text-sm"
+                  >
+                    Sign In
+                  </NavLink>
+                  <NavLink
+                    to="/signup"
+                    className="block w-full p-3 text-center rounded-lg bg-[var(--primary-color)] text-white hover:bg-[var(--primary-hover)] text-sm"
+                  >
+                    Get Started
+                  </NavLink>
+                </>
+              )}
+            </div>
           </nav>
         </div>
       </div>

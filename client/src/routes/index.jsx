@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import About from "../pages/About";
-import Services from "../pages/Services";
 import Contact from "../pages/Contact";
 import Landing from "../layout/Landing";
 import Signup from "../pages/Signup";
@@ -9,7 +8,8 @@ import Signin from "../pages/Signin";
 import Dashboard from "../pages/Dashboard";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import ProtectedRoute from "./ProtectedRoute";
-import TaskList from "../components/dashboard/TaskList";
+import Features from "../pages/Features";
+import PricingPage from "../pages/Pricing";
 
 export const RouterProvider = () => {
     return(
@@ -17,8 +17,9 @@ export const RouterProvider = () => {
             <Routes>
                 <Route path="/" element={<Landing/>}>
                     <Route index element={<Home/>}/>
+                    <Route path="features" element={<Features/>}/>
+                    <Route path="pricing" element={<PricingPage/>}/>
                     <Route path="about" element={<About/>}/>
-                    <Route path="services" element={<Services/>}/>
                     <Route path="contact" element={<Contact/>}/>
                 </Route>
                 <Route path="privacy" element={<PrivacyPolicy/>}/>

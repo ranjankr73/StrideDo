@@ -1,76 +1,44 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Pricing = ({ backgroundColor }) => {
-  const plans = [
-    {
-      name: "Starter",
-      price: "399",
-      features: [
-        "Up to 100 guests",
-        "Basic event tracking",
-        "Email support",
-        "3 active events",
-      ],
-    },
-    {
-      name: "Professional",
-      price: "999",
-      featured: true,
-      features: [
-        "Unlimited guests",
-        "Advanced analytics",
-        "Priority support",
-        "Custom branding",
-        "10 active events",
-      ],
-    },
-    {
-      name: "Enterprise",
-      price: "Contact",
-      features: [
-        "Custom solutions",
-        "Dedicated manager",
-        "API access",
-        "Unlimited events",
-        "Premium support",
-      ],
-    },
-  ];
+const Pricing = ({ plans }) => {
+  
 
   return (
-    <section className={`bg-${backgroundColor} py-16 md:py-24`}>
+    <section className="bg-[var(--background)] py-16 md:py-24 border-t border-[var(--border-color)]">
       <div className="container mx-auto px-4 md:px-8">
-        <h2 className="font-montserrat text-3xl md:text-4xl font-bold text-dark text-center mb-12">
-          Flexible <span className="text-accent">Pricing Plans</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] text-center mb-12">
+          Simple <span className="text-[var(--primary-color)]">Pricing</span>
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`p-8 rounded-xl ${
+              className={`p-6 md:p-8 rounded-xl bg-white ${
                 plan.featured
-                  ? "border-2 border-accent"
-                  : "border border-gray-200"
+                  ? "border-2 border-[var(--primary-color)] shadow-lg"
+                  : "border border-[var(--border-color)]"
               }`}
             >
-              <h3 className="font-montserrat text-2xl font-semibold mb-4">
+              <h3 className="text-xl md:text-2xl font-semibold text-[var(--text-primary)] mb-4">
                 {plan.name}
               </h3>
-              <div className="mb-8">
-                <span className="text-4xl font-bold text-dark">
-                  ₹{plan.price}
+              <div className="mb-6">
+                <span className="text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
+                  ${plan.price}
                 </span>
-                <span className="text-dark/60">/event</span>
+                {plan.name !== "Team" && (
+                  <span className="text-[var(--text-secondary)]">/month</span>
+                )}
               </div>
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-3 md:space-y-4 mb-6">
                 {plan.features.map((feature, fIndex) => (
                   <li
                     key={fIndex}
-                    className="flex items-center gap-2 font-open-sans text-dark/80"
+                    className="flex items-start gap-2 text-[var(--text-secondary)]"
                   >
                     <svg
-                      className="w-5 h-5 text-accent"
+                      className="w-5 h-5 text-[var(--primary-color)] flex-shrink-0 mt-0.5"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -81,14 +49,14 @@ const Pricing = ({ backgroundColor }) => {
                 ))}
               </ul>
               <NavLink
-                to="/signup"
-                className={`w-full block text-center py-3 rounded-full font-semibold ${
+                to={plan.name === 'Campus' ? '/contact' : '/signup'}
+                className={`w-full block text-center py-2.5 md:py-3 rounded-full font-medium transition-colors ${
                   plan.featured
-                    ? "bg-accent text-white hover:bg-accent/90"
-                    : "bg-primary/10 text-dark hover:bg-primary/20"
+                    ? "bg-[var(--primary-color)] text-white hover:bg-[var(--primary-hover)]"
+                    : "bg-[var(--background)] text-[var(--text-primary)] hover:bg-gray-50 border border-[var(--border-color)]"
                 }`}
               >
-                Choose Plan
+                {plan.cta || "Get Started"}
               </NavLink>
             </div>
           ))}

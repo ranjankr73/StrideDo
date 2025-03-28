@@ -1,75 +1,96 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import {
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+  FaTwitter,
+  FaLinkedin,
+  FaGithub,
+} from "react-icons/fa";
 
 const Contact = () => {
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // Add form submission logic
-  }
+  };
 
   return (
-    <section className="min-h-screen bg-primary/5 py-16 md:py-24">
+    <section className="min-h-screen bg-[var(--background)] py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid md:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-12 bg-white rounded-xl shadow-lg overflow-hidden border border-[var(--border-color)]">
           {/* Left Form Section */}
           <div className="p-8 md:p-12 lg:p-16">
-            <NavLink 
-              to="/" 
-              className="font-montserrat text-2xl font-bold hover:text-accent transition-colors"
+            <NavLink
+              to="/"
+              className="flex items-center text-2xl font-bold text-[var(--text-primary)] hover:text-[var(--primary-color)]"
             >
-              <span>atithi</span>
-              <span className="text-accent">bhava</span>
+              <span>TODO</span>
+              <span className="text-[var(--primary-color)]">ing</span>
             </NavLink>
 
             <div className="mt-8 md:mt-12">
-              <h2 className="font-montserrat text-3xl md:text-4xl font-bold text-dark mb-4">
-                Get in Touch
+              <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4">
+                Contact Support
               </h2>
-              <p className="font-open-sans text-dark/80 mb-8">
-                Have questions? Our team is ready to help you create unforgettable events.
+              <p className="text-[var(--text-secondary)] mb-8">
+                Need help or have suggestions? Our productivity experts are here
+                to assist you.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-1">
-                    <label className="font-open-sans font-medium">Name</label>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-[var(--text-primary)]">
+                      Name
+                    </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20"
+                      className="w-full px-4 py-3 rounded-lg border border-[var(--border-color)] focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)/20]"
+                      placeholder="Your name"
                       required
                     />
                   </div>
-                  <div className="space-y-1">
-                    <label className="font-open-sans font-medium">Email</label>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-[var(--text-primary)]">
+                      Email
+                    </label>
                     <input
                       type="email"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20"
+                      className="w-full px-4 py-3 rounded-lg border border-[var(--border-color)] focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)/20]"
+                      placeholder="you@example.com"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="font-open-sans font-medium">Subject</label>
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-[var(--text-primary)]">
+                    How can we help?
+                  </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20"
+                    className="w-full px-4 py-3 rounded-lg border border-[var(--border-color)] focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)/20]"
+                    placeholder="Feature request or question"
                     required
                   />
                 </div>
 
-                <div className="space-y-1">
-                  <label className="font-open-sans font-medium">Message</label>
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-[var(--text-primary)]">
+                    Message
+                  </label>
                   <textarea
                     rows="4"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20"
+                    className="w-full px-4 py-3 rounded-lg border border-[var(--border-color)] focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)/20]"
+                    placeholder="Describe your productivity needs..."
                     required
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 bg-accent text-white rounded-lg font-semibold hover:bg-accent/90 transition-colors"
+                  className="w-full py-3 bg-[var(--primary-color)] text-white rounded-lg font-medium hover:bg-[var(--primary-hover)] transition-colors"
                 >
                   Send Message
                 </button>
@@ -78,69 +99,98 @@ const Contact = () => {
           </div>
 
           {/* Right Contact Info */}
-          <div className="bg-primary/10 p-8 md:p-12 lg:p-16">
+          <div className="bg-[var(--background)] p-8 md:p-12 lg:p-16 border-l border-[var(--border-color)]">
             <div className="space-y-8">
-              <h3 className="font-montserrat text-2xl font-bold text-dark">
-                Contact Information
+              <h3 className="text-2xl font-bold text-[var(--text-primary)]">
+                Connect With Us
               </h3>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="text-accent text-xl mt-1">📍</div>
+                  <div className="text-[var(--primary-color)] text-xl mt-1">
+                    <FaMapMarkerAlt className="w-6 h-6" />
+                  </div>
                   <div>
-                    <p className="font-open-sans font-semibold">Office Address</p>
-                    <p className="font-open-sans text-dark/80">
-                      123 Event Street<br />
-                      Mumbai, Maharashtra 400001
+                    <p className="font-medium text-[var(--text-primary)]">
+                      Campus Address
+                    </p>
+                    <p className="text-[var(--text-secondary)]">
+                      MNNIT Allahabad Campus
+                      <br />
+                      Teliyarganj, Prayagraj
+                      <br />
+                      Uttar Pradesh 211004
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="text-accent text-xl mt-1">📞</div>
+                  <div className="text-[var(--primary-color)] text-xl mt-1">
+                    <FaPhone className="w-6 h-6" />
+                  </div>
                   <div>
-                    <p className="font-open-sans font-semibold">Phone Number</p>
-                    <p className="font-open-sans text-dark/80">
-                      +91 12345 67890<br />
-                      (Mon-Sat, 10AM - 7PM IST)
+                    <p className="font-medium text-[var(--text-primary)]">
+                      Support
+                    </p>
+                    <p className="text-[var(--text-secondary)]">
+                      +91 7301011273
+                      <br />
+                      (Mon-Fri, 9AM - 5PM IST)
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="text-accent text-xl mt-1">✉️</div>
+                  <div className="text-[var(--primary-color)] text-xl mt-1">
+                    <FaEnvelope className="w-6 h-6" />
+                  </div>
                   <div>
-                    <p className="font-open-sans font-semibold">Email Address</p>
-                    <p className="font-open-sans text-dark/80">
-                      support@atithibhava.com<br />
-                      events@atithibhava.com
+                    <p className="font-medium text-[var(--text-primary)]">
+                      Email
+                    </p>
+                    <p className="text-[var(--text-secondary)]">
+                      support@todoing.com
+                      <br />
+                      feedback@todoing.com
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-dark/20">
-                <h4 className="font-montserrat font-semibold mb-4">Follow Us</h4>
+              <div className="pt-8 border-t border-[var(--border-color)]">
+                <h4 className="font-semibold mb-4 text-[var(--text-primary)]">
+                  Follow Our Journey
+                </h4>
                 <div className="flex gap-6">
-                  {['📘', '📷', '💼'].map((icon, index) => (
-                    <button
-                      key={index}
-                      className="text-2xl hover:text-accent transition-colors"
-                    >
-                      {icon}
-                    </button>
-                  ))}
+                  <a
+                    href="#"
+                    className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+                  >
+                    <FaTwitter className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="#"
+                    className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+                  >
+                    <FaLinkedin className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="#"
+                    className="text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+                  >
+                    <FaGithub className="w-6 h-6" />
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Map Section */}
-        <div className="mt-12 rounded-2xl overflow-hidden shadow-xl">
+        {/* Optional: Company Location */}
+        <div className="mt-12 rounded-xl overflow-hidden shadow-lg border border-[var(--border-color)]">
           <iframe
-            title="Office Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.213484447031!2d72.8242143153775!3d18.93846876054594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1e801f6b3eb%3A0x6b4d7e9d746854c1!2sGateway%20of%20India!5e0!3m2!1sen!2sin!4v1624963257593!5m2!1sen!2sin"
+            title="MNNIT Allahabad Campus"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.256912514335!2d81.86353831501385!3d25.49122098380943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399acb8a0f23d3c1%3A0x696f6e76d242ab3a!2sMotilal%20Nehru%20National%20Institute%20of%20Technology%20Allahabad!5e0!3m2!1sen!2sin!4v1657798574899!5m2!1sen!2sin"
             width="100%"
             height="400"
             style={{ border: 0 }}
@@ -150,7 +200,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

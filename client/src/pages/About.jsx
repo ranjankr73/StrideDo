@@ -4,170 +4,149 @@ import CTA from '../components/CTA'
 
 const About = () => {
   return (
-    <section className="min-h-screen bg-primary/5 py-32">
+    <section className="min-h-screen bg-[var(--background)] py-16 md:py-24">
       {/* Hero Section */}
-      <div className="container mx-auto px-4 md:px-8 py-16 md:py-24">
+      <div className="container mx-auto px-4 md:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h1 className="font-montserrat text-4xl md:text-5xl font-bold text-dark space-y-6">
-              Crafting <span className="text-accent">Unforgettable</span> 
-              <span className="block text-secondary">Event Experiences</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)]">
+              Revolutionizing
+              <span className="block text-[var(--primary-color)] mt-3">Productivity</span>
+              <span className="block text-[var(--text-secondary)] text-3xl mt-4">
+                One Task at a Time
+              </span>
             </h1>
-            <p className="font-open-sans text-lg text-dark/80">
-              At Atithi Bhava, we believe every event tells a story. Born from a passion for seamless celebrations, 
-              our platform bridges tradition with technology, helping you create moments that linger in memories 
-              long after the last guest departs.
+            <p className="text-lg text-[var(--text-secondary)]">
+              Born from late-night coding sessions and countless productivity experiments, 
+              TODOing empowers individuals and teams to achieve more with intelligent task 
+              management that adapts to your workflow.
             </p>
           </div>
           <img 
-            src="\images\Collaborative Work Session.jpeg" 
-            alt="Team collaborating on event planning"
-            className="rounded-xl shadow-xl"
+            src="/images/productivity-dashboard.png" 
+            alt="App interface preview"
+            className="rounded-xl border border-[var(--border-color)] shadow-lg"
           />
         </div>
       </div>
 
       {/* Core Values */}
-      <div className="bg-white py-16 md:py-24">
+      <section className="bg-[var(--background)] border-y border-[var(--border-color)] py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-8">
-          <h2 className="font-montserrat text-3xl md:text-4xl font-bold text-dark text-center mb-12">
-            Our <span className="text-accent">Guiding Principles</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] text-center mb-12">
+            Our <span className="text-[var(--primary-color)]">Principles</span>
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {values.map((value, index) => (
-              <div key={index} className="p-6 rounded-xl bg-primary/10 hover:bg-primary/20 transition-colors">
-                <div className="text-accent text-3xl mb-4">{value.icon}</div>
-                <h3 className="font-montserrat text-xl font-semibold mb-4">
+              <div key={index} className="p-6 rounded-xl bg-white border border-[var(--border-color)] hover:shadow-lg transition-all">
+                <div className="text-[var(--primary-color)] text-3xl mb-4">
+                  {value.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-3">
                   {value.title}
                 </h3>
-                <p className="font-open-sans text-dark/80">
+                <p className="text-[var(--text-secondary)]">
                   {value.description}
                 </p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Timeline Section */}
-      <div className="container mx-auto px-4 md:px-8 py-16 md:py-24">
-        <h2 className="font-montserrat text-3xl md:text-4xl font-bold text-dark text-center mb-12">
-          Our <span className="text-accent">Journey</span>
+      {/* Timeline */}
+      <section className="container mx-auto px-4 md:px-8 py-16 md:py-24">
+        <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] text-center mb-12">
+          Our <span className="text-[var(--primary-color)]">Journey</span>
         </h2>
         <div className="space-y-12 max-w-3xl mx-auto">
           {timeline.map((item, index) => (
-            <div key={index} className="relative pl-8 border-l-2 border-accent">
-              <div className="absolute w-4 h-4 bg-accent rounded-full -left-[9px] top-1" />
-              <h3 className="font-montserrat text-xl font-semibold text-dark">
+            <div key={index} className="relative pl-8 border-l-2 border-[var(--primary-color)]">
+              <div className="absolute w-4 h-4 bg-[var(--primary-color)] rounded-full -left-[9px] top-1" />
+              <h3 className="text-xl font-semibold text-[var(--text-primary)]">
                 {item.year} — {item.title}
               </h3>
-              <p className="font-open-sans text-dark/80 mt-2">
+              <p className="text-[var(--text-secondary)] mt-2">
                 {item.description}
               </p>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
       {/* Team Section */}
-      <div className="bg-white py-16 md:py-24">
+      <section className="bg-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-8">
-          <h2 className="font-montserrat text-3xl md:text-4xl font-bold text-dark text-center mb-12">
-            Meet the <span className="text-accent">Visionaries</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] text-center mb-12">
+            Building <span className="text-[var(--primary-color)]">Tomorrow's Tools</span>
           </h2>
-          <div className="flex justify-center items-center gap-8">
+          <div className="flex flex-wrap justify-center gap-12">
             {team.map((member, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="text-center max-w-xs">
                 <img 
                   src={member.image} 
                   alt={member.name}
-                  className="w-48 h-48 object-cover rounded-full mx-auto mb-6"
+                  className="w-48 h-48 object-cover rounded-full mx-auto mb-6 border-4 border-[var(--primary-color)/20]"
                 />
-                <h3 className="font-montserrat text-xl font-semibold">{member.name}</h3>
-                <p className="font-open-sans text-dark/80 mb-4">{member.role}</p>
-                <p className="font-open-sans text-dark/80 text-sm max-w-xs mx-auto">
+                <h3 className="text-xl font-semibold text-[var(--text-primary)]">{member.name}</h3>
+                <p className="text-[var(--text-secondary)] mb-4">{member.role}</p>
+                <p className="text-sm text-[var(--text-secondary)]">
                   {member.bio}
                 </p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* CTA Section */}
-      <CTA title='Ready to Revolutionize Your Events?' />
-      
+      <CTA title="Join Our Productivity Revolution" />
     </section>
   )
 }
 
-// Placeholder Data
+// Updated Content
 const values = [
   {
-    icon: '🎯',
-    title: "Precision Planning",
-    description: "Military-grade organization meets creative flair in every event blueprint"
-  },
-  {
-    icon: '🤝',
-    title: "Guest First Approach",
-    description: "Every feature designed around attendee experience and host convenience"
-  },
-  {
     icon: '🚀',
-    title: "Continuous Innovation",
-    description: "Pioneering tools that stay ahead of event trends"
+    title: "Efficiency First",
+    description: "Designed by productivity nerds to eliminate friction in task management"
+  },
+  {
+    icon: '🧠',
+    title: "Smart Automation",
+    description: "AI-powered features that learn from your workflow patterns"
+  },
+  {
+    icon: '🔒',
+    title: "Privacy Focused",
+    description: "Your data stays yours - encrypted and never sold"
   }
 ]
 
 const timeline = [
-  // {
-  //   year: "2022",
-  //   title: "Foundation Laid",
-  //   description: "Conceptualized during a chaotic wedding planning experience"
-  // },
-  // {
-  //   year: "2023",
-  //   title: "Beta Launch",
-  //   description: "First version released to 50+ early adopters"
-  // },
-  // {
-  //   year: "2024",
-  //   title: "Platform Revolution",
-  //   description: "Integrated AI-powered guest management system"
-  // }
-
   {
-      year: "2025",
-      title: "Foundation Laid",
-      description: "Conceptualized during a chaotic wedding planning experience"
-    }
+    year: "2023",
+    title: "Concept Born",
+    description: "Created during a hackathon to solve personal productivity struggles"
+  },
+  {
+    year: "2024",
+    title: "Beta Launch",
+    description: "First release to 500+ early adopters from tech communities"
+  },
+  {
+    year: "2025",
+    title: "AI Integration",
+    description: "Launched smart task prioritization and auto-scheduling"
+  }
 ]
 
 const team = [
-  // {
-  //   image: "/images/founder1.jpg",
-  //   name: "Aarav Sharma",
-  //   role: "CEO & Founder",
-  //   bio: "Event tech enthusiast with decade of experience in hospitality management"
-  // },
-  // {
-  //   image: "/images/tech-lead.jpg",
-  //   name: "Neha Gupta",
-  //   role: "CTO",
-  //   bio: "Full-stack wizard passionate about simplifying complex workflows"
-  // },
-  // {
-  //   image: "/images/designer.jpg",
-  //   name: "Rohan Mehta",
-  //   role: "Lead Designer",
-  //   bio: "Creates interfaces that feel like second nature to users"
-  // },
   {
-    image: "public/images/DSC_0393.jpg",
+    image: "/images/ranjan-kumar.jpg",
     name: "Ranjan Kumar",
-    role: "Founder",
-    bio: "Creates product for experimenting his ideas."
+    role: "Founder & Lead Developer",
+    bio: "Full-stack developer passionate about productivity systems and minimalist design"
   }
 ]
 
