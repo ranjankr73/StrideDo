@@ -9,7 +9,7 @@ const Header = () => {
   const currentStats = stats();
 
   return (
-    <header className="bg-[var(--primary-color)] shadow-sm fixed w-full top-0 z-20 border-b border-[var(--border-color)] font-montserrat">
+    <header className="bg-[var(--primary-color)] shadow-sm fixed w-full top-0 z-50 border-b border-[var(--border-color)] font-montserrat">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
@@ -18,7 +18,7 @@ const Header = () => {
         </div>
 
         {/* Stats */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="md:flex items-center gap-6">
           <StatItem label="Active" value={currentStats.active} />
           <div className="h-6 w-px bg-white/20" />
           <StatItem label="Completed" value={currentStats.completed} />

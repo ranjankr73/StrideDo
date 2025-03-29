@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import useTaskStore from "../store/task";
+import toast from 'react-hot-toast';
 
 const TaskForm = ({ task, onClose }) => {
   const dateTime = () => {
@@ -18,7 +19,7 @@ const TaskForm = ({ task, onClose }) => {
     },
   });
 
-  const { createTask, updateTask } = useTaskStore();
+  const { createTask, updateTask, error } = useTaskStore();
 
   const handleClose = () => {
     reset();
@@ -31,9 +32,19 @@ const TaskForm = ({ task, onClose }) => {
       const taskData = { ...data, dueDate };
       
       if (task?._id) {
-        await updateTask(task._id, taskData);
+        const response = await updateTask(task._id, taskData);
+        if(response){
+          toast.success("Task updated successfully.");
+        }else{
+          error && toast.error("Try again to update!");
+        }
       } else {
-        await createTask(taskData);
+        const response = await createTask(taskData);
+        if(response){
+          toast.success("Task created successfully.");
+        }else{
+          toast.error(error);
+        }
       }
       handleClose();
     } catch (error) {
@@ -42,7 +53,7 @@ const TaskForm = ({ task, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-[100]">
       <div className="bg-[var(--background)] rounded-xl p-6 w-full max-w-lg border border-[var(--border-color)] shadow-xl">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold text-[var(--text-primary)]">

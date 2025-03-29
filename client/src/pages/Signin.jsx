@@ -23,11 +23,11 @@ const Signin = () => {
       return;
     }
 
-    try {
-      await signin({ email, password });
+    const response = await signin({ email, password });
+    if(response){
       toast.success('Signed in successfully');
-    } catch (err) {
-      error && toast.error(error)
+    }else{
+      error && toast.error(error);
     }
   }
 

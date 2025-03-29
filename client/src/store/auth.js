@@ -11,6 +11,7 @@ const useAuthStore = create((set, get) => ({
             set({ loading: true, error: null });
             const response = await api.get('/user/me');
             set({ currentUser: response.data.user, loading: false });
+            return true;
         } catch (error) {
             if (error.response?.status === 401) {
                 const refreshed = await get().updateAccessToken();
@@ -19,6 +20,7 @@ const useAuthStore = create((set, get) => ({
                 }
             }
             set({ currentUser: null, loading: false, error: error?.response?.data?.message });
+            return false;
         }
     },
 
@@ -27,8 +29,10 @@ const useAuthStore = create((set, get) => ({
             set({ loading: true, error: null });
             const response = await api.post('/user/signup', userData);
             set({ currentUser: response.data.user, loading: false });
+            return true;
         } catch (error) {
             set({ currentUser: null, error: error?.response?.data?.message, loading: false });
+            return false;
         }
     },
 
@@ -37,8 +41,10 @@ const useAuthStore = create((set, get) => ({
             set({ loading: true, error: null });
             const response = await api.post('/user/login', userData);
             set({ currentUser: response.data.user, loading: false });
+            return true;
         } catch (error) {
             set({ currentUser: null, error: error?.response?.data?.message, loading: false });
+            return false;
         }
     },
 
@@ -60,8 +66,10 @@ const useAuthStore = create((set, get) => ({
             set({ loading: true, error: null });
             await api.post('/user/logout');
             set({ currentUser: null, loading: false });
+            return true;
         } catch (error) {
             set({ error: error?.response?.data?.message, loading: false });
+            return false;
         }
     }
 }));

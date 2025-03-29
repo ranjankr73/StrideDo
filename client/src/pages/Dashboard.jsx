@@ -3,7 +3,7 @@ import Header from '../components/dashboard/Header';
 import useTaskStore from '../store/task';
 import { useEffect } from 'react';
 import TaskList from '../components/dashboard/TaskList';
-
+import Controls from '../components/dashboard/Controls';
 const Dashboard = () => {
   const { getTasks } = useTaskStore();
 
@@ -20,8 +20,9 @@ const Dashboard = () => {
       <Sidebar />
       <div className="flex-1">
         <Header />
-        <main className="p-8 ml-64 mt-16">
+        <main className="p-8 ml-64 mt-16 flex flex-col">
           <TaskList/>
+          <Controls />
         </main>
       </div>
     </div>

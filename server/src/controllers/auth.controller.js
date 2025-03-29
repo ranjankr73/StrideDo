@@ -217,7 +217,18 @@ const updateAccessToken = async (req, res) => {
         const existedUser = await User.findById(decoded.userId);
 
         if (!existedUser || existedUser.refreshToken !== refreshToken) {
-            return res.status(403).clearCookie("refreshToken").json({
+
+            res.clearCookie("refreshToken", {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                sameSite: "Strict",
+            }).clearCookie("accessToken", {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                sameSite: "Strict",
+            });
+
+            return res.status(403).json({
                 message: "Invalid Refresh Token",
             });
         }

@@ -24,11 +24,11 @@ const Signup = () => {
       return;
     }
 
-    try {
-      await signup({ fullName, email, password });
+    const response = await signup({ fullName, email, password });
+    if(response){
       toast.success('Account created successfully');
-    } catch (err) {
-      error && toast.error(error)
+    }else{
+      error && toast.error(error);
     }
   };
 
