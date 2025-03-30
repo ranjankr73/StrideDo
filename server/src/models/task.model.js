@@ -15,6 +15,9 @@ const taskSchema = new Schema(
             enum: ["low", "medium", "high"],
             default: "low",
         },
+        label: {
+            type: String,
+        },
         description: {
             type: String,
             default: ""

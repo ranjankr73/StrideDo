@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import TaskList from '../components/dashboard/TaskList';
 import Controls from '../components/dashboard/Controls';
 const Dashboard = () => {
-  const { getTasks } = useTaskStore();
+  const { tasks, getTasks, addLabel } = useTaskStore();
 
   useEffect(() => {
     const getAllTasks = async () => {
@@ -14,6 +14,10 @@ const Dashboard = () => {
 
     getAllTasks();
   }, []);
+
+  useEffect(() => {
+    addLabel();
+  }, [tasks]);
 
   return (
     <div className="min-h-screen bg-gray-50 flex">

@@ -4,7 +4,7 @@ import { Task } from "../models/task.model.js";
 const createTask = async (req, res) => {
     try {
         const userId = req.user.userId;
-        const { title, dueDate, priority, description, isCompleted } = req.body;
+        const { title, dueDate, priority, label, description, isCompleted } = req.body;
 
         if (!title || !dueDate) {
             return res.status(404).json({
@@ -23,6 +23,7 @@ const createTask = async (req, res) => {
             title,
             dueDate: new Date(dueDate),
             priority: priority || 'low',
+            label,
             description,
             completed: isCompleted,
             createdBy: userId,
@@ -36,6 +37,7 @@ const createTask = async (req, res) => {
                 title: savedTask.title,
                 dueDate: savedTask.dueDate,
                 priority: savedTask.priority,
+                label: savedTask.label,
                 description: savedTask.description,
                 completed: savedTask.completed,
             },
@@ -78,7 +80,7 @@ const updateTask = async (req, res) => {
         const userId = req.user.userId;
         const taskId = req.params.taskId;
 
-        const { title, dueDate, priority, description, isCompleted } = req.body;
+        const { title, dueDate, priority, label, description, isCompleted } = req.body;
 
         const existedUser = await User.findById(userId);
         if (!existedUser) {
@@ -93,6 +95,7 @@ const updateTask = async (req, res) => {
                 title: title,
                 dueDate: dueDate,
                 priority: priority,
+                label: label,
                 description: description,
                 completed: isCompleted,
             },
@@ -146,73 +149,4 @@ const deleteTask = async (req, res) => {
     }
 };
 
-// Advanced Features
-const filterTasks = async (req, res) => {
-    try {
-        const userId = req.user.userId;
-        const { filter } = req.body;
-
-        const existedUser = await User.findById(userId);
-        if (!existedUser) {
-            return res.status(404).json({
-                msg: "User does not exist",
-            });
-        }
-
-        let tasks;
-        if (filter === "Completed") {
-            tasks = await Task.find({ createdBy: userId, status: "Completed" });
-        } else if (filter === "Pending") {
-            tasks = await Task.find({ createdBy: userId, status: "Pending" });
-        } else if (filter === "High") {
-            tasks = await Task.find({ createdBy: userId, priority: "High" });
-        } else if (filter === "Medium") {
-            tasks = await Task.find({ createdBy: userId, priority: "Medium" });
-        } else if (filter === "Low") {
-            tasks = await Task.find({ createdBy: userId, priority: "Low" });
-        } else {
-            tasks = await Task.find({ createdBy: userId, dueDate: filter });
-        }
-
-        return res.status(201).json({
-            msg: "Tasks fetched successfully",
-            data: tasks,
-        });
-    } catch (error) {
-        return res.status(501).json({
-            msg: "Internal server error while fetching tasks with filter",
-        });
-    }
-};
-
-const viewTask = async (req, res) => {
-    try {
-        const userId = req.user.userId;
-        const taskId = req.params.taskId;
-
-        const existedUser = await User.findById(userId);
-        if (!existedUser) {
-            return res.status(404).json({
-                msg: "User does not exist",
-            });
-        }
-
-        const existedTask = await Task.findById(taskId);
-        if (!existedTask) {
-            return res.status(404).json({
-                msg: "Task does not found",
-            });
-        }
-
-        return res.status(201).json({
-            msg: "Task fetched successfully",
-            data: existedTask,
-        });
-    } catch (error) {
-        return res.status(500).json({
-            msg: "Internal server error while fetching a task",
-        });
-    }
-};
-
-export { createTask, getTasks, updateTask, deleteTask, filterTasks, viewTask };
+export { createTask, getTasks, updateTask, deleteTask };

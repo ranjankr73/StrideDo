@@ -20,7 +20,7 @@ const TaskForm = ({ task, onClose }) => {
     },
   });
 
-  const { createTask, updateTask, error } = useTaskStore();
+  const { createTask, updateTask, error, addLabel } = useTaskStore();
 
   const handleClose = () => {
     reset();
@@ -43,6 +43,7 @@ const TaskForm = ({ task, onClose }) => {
         const response = await createTask(taskData);
         if(response){
           toast.success("Task created successfully.");
+          addLabel();
         }else{
           toast.error(error);
         }

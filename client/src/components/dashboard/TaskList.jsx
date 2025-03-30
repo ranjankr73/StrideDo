@@ -2,11 +2,11 @@ import TaskCard from "../task/TaskCard";
 import useTaskStore from "../../store/task";
 
 const TaskList = () => {
-  const { tasksToDisplay, getFilteredTasks, searchItem, searchTasks } =
-    useTaskStore();
+  const { tasksToDisplay, getFilteredTasks, searchItem, searchTasks, currentLabel, getTasksByLabel } = useTaskStore();
 
   const filteredTasks = getFilteredTasks(tasksToDisplay);
   const searchedTasks = searchTasks(searchItem);
+  const labeledTasks = getTasksByLabel(currentLabel);
 
   return (
     <div
@@ -14,11 +14,17 @@ const TaskList = () => {
       role="list"
       aria-label="Task list"
     >
-      {searchItem ? (
+      {labeledTasks.length > 0 ? (labeledTasks.map((task, index) => (
+          <TaskCard
+            key={index}
+            task={task}
+            className="transition-opacity duration-300 hover:scale-[1.02]"
+          />
+        ))) : (searchItem ? (
         searchedTasks.length > 0 ? (
-          searchedTasks.map((task) => (
+          searchedTasks.map((task, index) => (
             <TaskCard
-              key={task._id}
+              key={index}
               task={task}
               className="transition-opacity duration-300 hover:scale-[1.02]"
             />
@@ -29,9 +35,9 @@ const TaskList = () => {
           </div>
         )
       ) : filteredTasks.length > 0 ? (
-        filteredTasks.map((task) => (
+        filteredTasks.map((task, index) => (
           <TaskCard
-            key={task._id}
+            key={index}
             task={task}
             className="transition-opacity duration-300 hover:scale-[1.02]"
           />
@@ -45,7 +51,7 @@ const TaskList = () => {
               : "Add a new task to get started!"}
           </p>
         </div>
-      )}
+      ))}
     </div>
   );
 };

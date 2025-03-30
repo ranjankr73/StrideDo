@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiMoon, FiSun, FiLogOut, FiGrid, FiCheckCircle, FiClock, FiZap } from 'react-icons/fi';
+import { FiMoon, FiSun, FiLogOut, FiGrid, FiCheckCircle, FiClock, FiZap, FiHash } from 'react-icons/fi';
 import useTaskStore from '../../store/task';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 
 const Sidebar = () => {
   const { currentUser, logout } = useAuthStore();
-  const { tasksToDisplay, setFilter } = useTaskStore();
+  const { tasksToDisplay, setFilter, labels, currentLabel, setCurrentLabel } = useTaskStore();
   const [ darkMode, setDarkMode] = useState(false);
   // const { darkMode, toggleDarkMode } = useThemeStore();
   const navigate = useNavigate();
@@ -37,6 +37,15 @@ const Sidebar = () => {
     { id: 'overdue', label: 'Overdue', icon: <FiClock /> },
   ];
 
+  const handleDisplayTasks = (type, value) => {
+    if(type === "filter"){
+      setCurrentLabel("");
+      setFilter(value);
+    }else{
+      setFilter("");
+      setCurrentLabel(value);
+    }
+  }
   return (
     <nav className="w-64 bg-[var(--background)] border-r border-[var(--border-color)] fixed h-full flex flex-col font-montserrat z-40">
       <div className="p-4 py-24 flex-1">
@@ -48,7 +57,7 @@ const Sidebar = () => {
           {filters.map((filter) => (
             <button
               key={filter.id}
-              onClick={() => setFilter(filter.id)}
+              onClick={() => handleDisplayTasks("filter", filter.id)}
               className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors
                 ${tasksToDisplay === filter.id 
                   ? 'bg-[var(--primary-color)/20] text-[var(--primary-color)] border-l-2 border-[var(--primary-color)]'
@@ -64,10 +73,29 @@ const Sidebar = () => {
             </button>
           ))}
         </div>
+
+        <div className="space-y-1 mt-4">
+          {labels.map((label, index) => (
+            <button
+              key={index}
+              onClick={() => handleDisplayTasks("label", label)}
+              className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors
+                ${currentLabel === label 
+                  ? 'text-[var(--primary-color)]'
+                  : 'text-[var(--text-secondary)] hover:bg-[var(--background-hover)]'}`
+              }
+            >
+              <FiHash className={`w-5 h-5 ${currentLabel === label ? 'text-[var(--primary-color)]' : 'text-[var(--text-secondary)]'}`}/>
+              <span className={`text-sm ${currentLabel === label ? 'font-semibold' : 'font-medium'}`}>
+                {label}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Bottom Section */}
-      <div className="p-4 pb-10 border-t border-[var(--border-color)] space-y-4">
+      <div className="fixed z-10 left-4 bottom-3 p-4 border-t border-[var(--border-color)] space-y-4 bg-white">
         <button
           onClick={toggleTheme}
           className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors

@@ -4,6 +4,8 @@ import api from "../config/axiosConfig";
 const useTaskStore = create((set, get) => ({
   tasks: [],
   tasksToDisplay: "all",
+  labels: [],
+  currentLabel: "",
   searchItem: "",
   loading: false,
   error: null,
@@ -161,10 +163,34 @@ const useTaskStore = create((set, get) => ({
     const tasks = get().tasks;
     return [
       ...tasks.filter(
-        (t) => t.title.toLowerCase().includes(input) || t.description.toLowerCase().includes(input)
+        (t) =>
+          t.title.toLowerCase().includes(input) ||
+          t.description.toLowerCase().includes(input)
       ),
     ];
   },
+
+  //Label categorization
+  addLabel: () => {
+    const labels = get().labels;
+    const tasks = get().tasks;
+
+    const newLabels = [
+      ...new Set(
+        tasks.map((task) => task.label?.trim()).filter((label) => label)
+      ),
+    ].filter((label) => !labels.includes(label));
+
+    set({ labels: [...labels, ...newLabels] });
+  },
+
+  setCurrentLabel: (label) => set({ currentLabel: label }),
+
+  getTasksByLabel: (label) => {
+    const tasks = get().tasks;
+    return [...tasks.filter(t => t.label === label)];
+  },
+
 }));
 
 export default useTaskStore;
