@@ -6,7 +6,7 @@ const app = express();
 
 //common middlewares
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: 'https://stridedo.vercel.app',
     credentials: true
 }));
 app.use(express.json({limit: "16kb"}));
