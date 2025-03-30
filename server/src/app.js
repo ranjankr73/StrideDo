@@ -6,7 +6,7 @@ const app = express();
 
 //common middlewares
 app.use(cors({
-    origin: ['https://stridedo.vercel.app'],
+    origin: ['http://localhost:5173', 'https://stridedo.vercel.app'],
     credentials: true
 }));
 
