@@ -2,6 +2,7 @@ import { FiPlus } from 'react-icons/fi';
 import useTaskStore from '../../store/task';
 import { useState } from 'react';
 import TaskForm from '../TaskForm';
+import { appName } from '../../constant';
 
 const Header = () => {
   const [showTaskForm, setShowTaskForm] = useState(false);
@@ -13,8 +14,8 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <span className="text-2xl font-bold text-white">TODO</span>
-          <span className="text-2xl font-bold text-gray-800">ing</span>
+          <span className="text-2xl font-bold text-white">{appName.first}</span>
+          <span className="text-2xl font-bold text-gray-800">{appName.second}</span>
         </div>
 
         {/* Stats */}

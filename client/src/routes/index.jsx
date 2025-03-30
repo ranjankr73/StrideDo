@@ -6,10 +6,12 @@ import Landing from "../layout/Landing";
 import Signup from "../pages/Signup";
 import Signin from "../pages/Signin";
 import Dashboard from "../pages/Dashboard";
-import PrivacyPolicy from "../pages/PrivacyPolicy";
+// import PrivacyPolicy from "../pages/PrivacyPolicy";
 import ProtectedRoute from "./ProtectedRoute";
 import Features from "../pages/Features";
 import PricingPage from "../pages/Pricing";
+import Error404 from "../pages/Error404";
+import ComingSoon from "../pages/ComingSoon";
 
 export const RouterProvider = () => {
     return(
@@ -22,12 +24,19 @@ export const RouterProvider = () => {
                     <Route path="about" element={<About/>}/>
                     <Route path="contact" element={<Contact/>}/>
                 </Route>
-                <Route path="privacy" element={<PrivacyPolicy/>}/>
                 <Route path="signin" element={<Signin/>}/>
                 <Route path="signup" element={<Signup/>}/>
                 <Route element={<ProtectedRoute/>}>
                     <Route path="dashboard" element={<Dashboard/>}/>
                 </Route>
+                <Route path="forgot-password" element={<ComingSoon/>}/>
+                <Route path="demo" element={<ComingSoon/>}/>
+                <Route path="download" element={<ComingSoon/>}/>
+                <Route path="blog" element={<ComingSoon/>}/>
+                <Route path="support" element={<ComingSoon/>}/>
+                <Route path="documentation" element={<ComingSoon/>}/>
+                <Route path="privacy" element={<Error404/>}/>
+                <Route path="*" element={<Error404/>}/>
             </Routes>
         </BrowserRouter>
     );

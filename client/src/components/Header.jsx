@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import useAuthStore from "../store/auth";
+import { appName } from "../constant";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,10 +22,10 @@ const Header = () => {
           {/* Logo */}
           <NavLink to="/" className="flex items-center">
             <span className="text-2xl font-bold text-[var(--primary-color)]">
-              TODO
+              {appName.first}
             </span>
             <span className="text-2xl font-bold text-[var(--text-primary)]">
-              ing
+              {appName.second}
             </span>
           </NavLink>
 

@@ -8,7 +8,7 @@ const Demo = () => {
           <div className="relative order-last md:order-first">
             <div className="rounded-xl overflow-hidden border border-[var(--border-color)] shadow-lg hover:shadow-xl transition-shadow">
               <img 
-                src="/images/todo-interface-demo.png" 
+                src="\images\dashboard-screenshot.png" 
                 alt="TODOing app interface" 
                 className="w-full h-auto"
               />

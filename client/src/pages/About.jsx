@@ -6,7 +6,7 @@ const About = () => {
   return (
     <section className="min-h-screen bg-[var(--background)] py-16 md:py-24">
       {/* Hero Section */}
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container my-40 mx-auto px-4 md:px-8 mb-16 md:mb-40">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)]">
@@ -23,7 +23,7 @@ const About = () => {
             </p>
           </div>
           <img 
-            src="/images/productivity-dashboard.png" 
+            src="/images/dashboard-screenshot.png" 
             alt="App interface preview"
             className="rounded-xl border border-[var(--border-color)] shadow-lg"
           />
@@ -143,7 +143,7 @@ const timeline = [
 
 const team = [
   {
-    image: "/images/ranjan-kumar.jpg",
+    image: "/images/ranjan-kumar.JPG",
     name: "Ranjan Kumar",
     role: "Founder & Lead Developer",
     bio: "Full-stack developer passionate about productivity systems and minimalist design"

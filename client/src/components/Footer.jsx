@@ -1,7 +1,8 @@
 import React from 'react'
-import { FaLinkedin, FaTwitter, FaInstagram, FaPhone } from 'react-icons/fa'
+import { FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa'
 import { IoMail } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
+import { appName, contact } from '../constant';
 
 const Footer = () => {
   return (
@@ -12,10 +13,10 @@ const Footer = () => {
           <div className="md:col-span-1 space-y-4">
             <NavLink to="/" className="flex items-center">
               <span className="text-xl font-bold text-[var(--primary-color)]">
-                TODO
+                {appName.first}
               </span>
               <span className="text-xl font-bold text-[var(--text-primary)]">
-                ing
+                {appName.second}
               </span>
             </NavLink>
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
@@ -68,7 +69,7 @@ const Footer = () => {
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
                 <IoMail className="flex-shrink-0" />
-                <span>support@todoing.app</span>
+                <span>{contact.supportMail}</span>
               </div>
             </div>
             <div className="flex gap-4 mt-4 text-[var(--text-secondary)]">
@@ -85,7 +86,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
           <p className="text-[var(--text-secondary)]">
-            © {new Date().getFullYear()} TODOing. All rights reserved.
+            © {new Date().getFullYear()} {appName.first}{appName.second}. All rights reserved.
           </p>
           <div className="flex gap-6">
             <NavLink to="/privacy" className="text-[var(--text-secondary)] hover:text-[var(--primary-color)]">

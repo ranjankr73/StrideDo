@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 
 const Pricing = ({ plans }) => {
   
-
   return (
     <section className="bg-[var(--background)] py-16 md:py-24 border-t border-[var(--border-color)]">
       <div className="container mx-auto px-4 md:px-8">

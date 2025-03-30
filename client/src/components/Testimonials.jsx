@@ -1,25 +1,26 @@
 import React from 'react'
 import TestimonialCard from './TestimonialCard'
+import { appName } from '../constant';
 
 const Testimonials = () => {
   const testimonials = [
     {
       name: "Alex Martinez",
       role: "Product Manager",
-      text: "TODOing transformed how our team manages projects. The intuitive interface and smart reminders keep everyone on track.",
+      text: `${appName.first}${appName.second} transformed how our team manages projects. The intuitive interface and smart reminders keep everyone on track.`,
       image: "/images/Professional Portrait of a Man.jpeg"
     },
     {
       name: "Priya Kapoor",
       role: "Freelance Developer",
-      text: "I've tried countless todo apps, but TODOing's cross-device sync and priority management are game-changers.",
+      text: `I've tried countless todo apps, but ${appName.first}${appName.second}'s cross-device sync and priority management are game-changers.`,
       image: "/images/Elegant Woman in Traditional Saree.jpeg"
     },
     {
       name: "James Wilson",
       role: "Startup Founder",
       text: "The analytics features helped us identify workflow bottlenecks we didn't even know existed. Essential for any team!",
-      image: "/images/user3.jpg"
+      image: "/images/Friendly Young Man at Desk.jpeg"
     }
   ]
 

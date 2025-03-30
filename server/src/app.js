@@ -17,9 +17,11 @@ app.use(cookieParser());
 //import routes
 import authRouter from "./routes/auth.route.js";
 import taskRouter from "./routes/task.route.js";
+import contactRouter from "./routes/contact.route.js";
 
 //routes
 app.use("/api/v1/user", authRouter);
 app.use("/api/v1/task", taskRouter);
+app.use("/api/v1/contact", contactRouter);
 
 export { app };

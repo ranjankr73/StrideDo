@@ -23,7 +23,7 @@ const Home = () => {
     },
     {
       name: "Pro",
-      price: "199",
+      price: "29",
       featured: true,
       features: [
         "Unlimited projects",

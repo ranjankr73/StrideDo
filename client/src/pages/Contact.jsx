@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FaMapMarkerAlt,
@@ -8,11 +8,34 @@ import {
   FaLinkedin,
   FaGithub,
 } from "react-icons/fa";
+import api from "../config/axiosConfig";
+import toast from 'react-hot-toast';
+import { appName, contact } from "../constant";
 
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [request, setRequest] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form submission logic
+    
+    if(!fullName || !email || !request || !message){
+      toast.error("All fields are required!");
+    }
+
+    try {
+      const response = await api.post('/contact', { fullName, email, request, message });
+      toast.success(response?.data?.message);
+      
+      setFullName("");
+      setEmail("");
+      setRequest("");
+      setMessage("");
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
   };
 
   return (
@@ -25,8 +48,8 @@ const Contact = () => {
               to="/"
               className="flex items-center text-2xl font-bold text-[var(--text-primary)] hover:text-[var(--primary-color)]"
             >
-              <span>TODO</span>
-              <span className="text-[var(--primary-color)]">ing</span>
+              <span>{appName.first}</span>
+              <span className="text-[var(--primary-color)]">{appName.second}</span>
             </NavLink>
 
             <div className="mt-8 md:mt-12">
@@ -41,22 +64,34 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[var(--text-primary)]">
+                    <label 
+                      htmlFor="name"
+                      className="block text-sm font-medium text-[var(--text-primary)]"
+                    >
                       Name
                     </label>
                     <input
+                      id="name"
                       type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
                       className="w-full px-4 py-3 rounded-lg border border-[var(--border-color)] focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)/20]"
                       placeholder="Your name"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="block text-sm font-medium text-[var(--text-primary)]">
+                    <label 
+                      htmlFor="email"
+                      className="block text-sm font-medium text-[var(--text-primary)]"
+                    >
                       Email
                     </label>
                     <input
+                      id="email"
                       type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full px-4 py-3 rounded-lg border border-[var(--border-color)] focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)/20]"
                       placeholder="you@example.com"
                       required
@@ -65,11 +100,17 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-[var(--text-primary)]">
+                  <label 
+                    htmlFor="request"
+                    className="block text-sm font-medium text-[var(--text-primary)]"
+                  >
                     How can we help?
                   </label>
                   <input
+                    id="request"
                     type="text"
+                    value={request}
+                    onChange={(e) => setRequest(e.target.value)}
                     className="w-full px-4 py-3 rounded-lg border border-[var(--border-color)] focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)/20]"
                     placeholder="Feature request or question"
                     required
@@ -77,11 +118,17 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-[var(--text-primary)]">
+                  <label 
+                    htmlFor="message"
+                    className="block text-sm font-medium text-[var(--text-primary)]"
+                  >
                     Message
                   </label>
                   <textarea
+                    id="message"
                     rows="4"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full px-4 py-3 rounded-lg border border-[var(--border-color)] focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)/20]"
                     placeholder="Describe your productivity needs..."
                     required
@@ -133,9 +180,9 @@ const Contact = () => {
                       Support
                     </p>
                     <p className="text-[var(--text-secondary)]">
-                      +91 7301011273
+                      {contact.phone}
                       <br />
-                      (Mon-Fri, 9AM - 5PM IST)
+                      {contact.time}
                     </p>
                   </div>
                 </div>
@@ -149,9 +196,9 @@ const Contact = () => {
                       Email
                     </p>
                     <p className="text-[var(--text-secondary)]">
-                      support@todoing.com
+                      {contact.supportMail}
                       <br />
-                      feedback@todoing.com
+                      {contact.feedbackMail}
                     </p>
                   </div>
                 </div>

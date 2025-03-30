@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
 import useAuthStore from '../store/auth';
+import { appName } from '../constant';
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
@@ -42,8 +43,8 @@ const Signup = () => {
               to="/" 
               className="flex items-center text-2xl font-bold text-[var(--text-primary)] hover:text-[var(--primary-color)]"
             >
-              <span>TODO</span>
-              <span className="text-[var(--primary-color)]">ing</span>
+              <span>{appName.first}</span>
+              <span className="text-[var(--primary-color)]">{appName.second}</span>
             </NavLink>
 
             <form onSubmit={handleSubmit} className="mt-8 md:mt-12 space-y-6">
