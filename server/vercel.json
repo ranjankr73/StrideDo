@@ -10,5 +10,13 @@
             "src": "/(.*)",
             "dest": "./src/index.js"
         }
-    ]
+    ],
+    "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "https://stridedo.vercel.app" }
+      ]
+    }
+  ]
 }
