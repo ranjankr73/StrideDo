@@ -199,9 +199,14 @@ const updateAccessToken = async (req, res) => {
         const refreshToken = req.cookies.refreshToken;
 
         if (!refreshToken) {
+            res.clearCookie("accessToken", {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                sameSite: "Strict",
+            });
+            
             return res.status(401).json({
                 message: "Refresh Token required",
-                code: "MISSING_REFRESH_TOKEN"
             });
         }
 
