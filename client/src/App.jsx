@@ -2,9 +2,19 @@ import { useEffect } from "react";
 import { RouterProvider } from "./routes";
 import toast, { Toaster } from "react-hot-toast";
 import useAuthStore from "./store/auth";
+// import useThemeStore from "./store/theme";
 
 function App() {
-  const { currentUser, initializeAuth, updateAccessToken } = useAuthStore();
+  const { initializeAuth, updateAccessToken } = useAuthStore();
+  // const darkMode = useThemeStore((state) => state.darkMode);
+  
+  // useEffect(() => {
+  //   if (darkMode) {
+  //     document.documentElement.classList.add('dark');
+  //   } else {
+  //     document.documentElement.classList.remove('dark');
+  //   }
+  // }, [darkMode]);
 
   useEffect(() => {
     const checkAuth = async () => {

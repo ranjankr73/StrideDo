@@ -16,6 +16,7 @@ const TaskForm = ({ task, onClose }) => {
       description: task?.description || "",
       dueDate: dateTime() || "",
       priority: task?.priority || "low",
+      label: task?.label || "",
     },
   });
 
@@ -104,6 +105,14 @@ const TaskForm = ({ task, onClose }) => {
                 <option value="high">High Priority</option>
               </select>
             </div>
+          </div>
+
+          <div className="space-y-1">
+            <input
+              {...register("label")}
+              placeholder="Add Label"
+              className="w-full px-4 py-2.5 rounded-lg border border-[var(--border-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] placeholder-[var(--text-secondary)]"
+            />
           </div>
 
           <div className="flex justify-end gap-3 pt-6">

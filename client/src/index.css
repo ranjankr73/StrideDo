@@ -43,8 +43,15 @@
 }
   
 .dark {
-    background-color: #0f172a; /* Adjust to match your dark theme */
-  }
+  /* Dark Theme */
+  --background: #2d2a2a;
+  --background-hover: #2d2d2d;
+  --border-color: #404040;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a3a3a3;
+  --primary-color: #e57373;
+  --primary-hover: #ef5350;
+}
   
 .dark .sidebar-content {
   background: linear-gradient(to bottom, #1e1b4b, #312e81);

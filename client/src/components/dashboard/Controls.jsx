@@ -6,7 +6,7 @@ const Controls = () => {
     const [searchInput, setSearchInput] = useState('');
     const [selectedPriority, setSelectedPriority] = useState('all');
     const [sortBy, setSortBy] = useState('createdAt-asc');
-    const { setFilter, setSearch, searchTasks } = useTaskStore();
+    const { setFilter, setSearch } = useTaskStore();
     
     const handlePriorityChange = (priority) => {
         setSelectedPriority(priority);
@@ -26,6 +26,7 @@ const Controls = () => {
 
     const clearFilters = () => {
         setSearchInput('');
+        setSearch('');
         setSelectedPriority('all');
         setSortBy('createdAt-asc');
         setFilter('all');

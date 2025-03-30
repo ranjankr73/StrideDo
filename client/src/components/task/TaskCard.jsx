@@ -28,13 +28,16 @@ const TaskCard = ({ task }) => {
 
   return (
     <>
-      <div className="container bg-white rounded-xl border border-[var(--border-color)] shadow-sm hover:shadow-md transition-all p-5 font-montserrat">
+      <div className={`container bg-white rounded-xl border ${new Date(task?.dueDate) < new Date() && !task?.completed ? "border-red-500" : "border-[var(--border-color)]"} shadow-sm hover:shadow-md transition-all p-5 font-montserrat`}>
         <div className="flex justify-between items-start mb-3">
           <span className={`px-2.5 py-1 text-xs font-medium rounded-full 
             ${task.priority === 'high' ? 'bg-[var(--primary-color)/20] text-[var(--primary-color)]' :
               task.priority === 'medium' ? 'bg-amber-100 text-amber-700' :
               'bg-emerald-100 text-emerald-700'}`}>
             {task.priority}
+          </span>
+          <span className={`px-2.5 py-1 text-xs font-medium rounded-full`}>
+            {task.label ? task.label : null}
           </span>
           <div className="flex gap-1">
             <button 

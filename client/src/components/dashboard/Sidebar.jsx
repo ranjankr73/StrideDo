@@ -4,17 +4,19 @@ import useTaskStore from '../../store/task';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/auth';
+// import useThemeStore from '../../store/theme';
 import toast from 'react-hot-toast';
 
 const Sidebar = () => {
   const { currentUser, logout } = useAuthStore();
   const { tasksToDisplay, setFilter } = useTaskStore();
-  const [darkMode, setDarkMode] = useState(false);
+  const [ darkMode, setDarkMode] = useState(false);
+  // const { darkMode, toggleDarkMode } = useThemeStore();
   const navigate = useNavigate();
 
   const toggleTheme = () => {
     setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark');
+    // document.documentElement.classList.toggle('dark');
   };
 
   const handleLogout = async () => {
