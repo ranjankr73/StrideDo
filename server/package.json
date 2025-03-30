@@ -4,7 +4,6 @@
   "description": "Server for TODO App",
   "type": "module",
   "main": "src/index.js",
-  "proxy": "https://stridedo.vercel.app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
