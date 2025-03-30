@@ -25,4 +25,8 @@ app.use("/api/v1/user", authRouter);
 app.use("/api/v1/task", taskRouter);
 app.use("/api/v1/contact", contactRouter);
 
+app.get('/', (req, res) =>{
+    res.send("Hello");
+})
+
 export { app };
