@@ -1,6 +1,6 @@
 # StrideDo - Modern Todo Application 🚀  
 
-![StrideDo Demo](screenshot\homepage.png)
+![StrideDo Demo]([screenshot\homepage.png](https://github.com/ranjankr73/StrideDo/blob/main/screenshot/homepage.png))
 
 **StrideDo** is a feature-rich todo application designed for seamless task management, robust authentication, and an exceptional user experience.
 
