@@ -25,12 +25,12 @@ const getCurrentUser = async (req, res) => {
                 .clearCookie("accessToken", {
                     httpOnly: true,
                     secure: process.env.NODE_ENV === "production",
-                    sameSite: "Strict",
+                    sameSite: "None",
                 })
                 .clearCookie("refreshToken", {
                     httpOnly: true,
                     secure: process.env.NODE_ENV === "production",
-                    sameSite: "Strict",
+                    sameSite: "None",
                 })
                 .json({
                     message: "User not found!",
@@ -98,12 +98,13 @@ const signup = async (req, res) => {
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "None",
+            maxAge: 24 * 60 * 60 * 1000,
         }).cookie("accessToken", accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 15 * 60 * 1000,
-            sameSite: "Strict",
+            sameSite: "None",
         });
 
         if (!savedUser) {
@@ -172,12 +173,13 @@ const login = async (req, res) => {
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "None",
+            maxAge: 24 * 60 * 60 * 1000,
         }).cookie("accessToken", accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 15 * 60 * 1000,
-            sameSite: "Strict",
+            sameSite: "None",
         });
 
         return res.status(200).json({
@@ -202,7 +204,7 @@ const updateAccessToken = async (req, res) => {
             res.clearCookie("accessToken", {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "Strict",
+                sameSite: "None",
             });
             
             return res.status(401).json({
@@ -214,7 +216,13 @@ const updateAccessToken = async (req, res) => {
         try {
             decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
         } catch (error) {
-            return res.status(403).clearCookie("refreshToken").json({
+            res.clearCookie("refreshToken", {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                sameSite: "None"
+            });
+
+            return res.status(403).json({
                 message: "Invalid or expired refresh token",
             });
         }
@@ -226,11 +234,11 @@ const updateAccessToken = async (req, res) => {
             res.clearCookie("refreshToken", {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "Strict",
+                sameSite: "None",
             }).clearCookie("accessToken", {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "Strict",
+                sameSite: "None",
             });
 
             return res.status(403).json({
@@ -247,12 +255,13 @@ const updateAccessToken = async (req, res) => {
         res.cookie("refreshToken", newRefreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "None",
+            maxAge: 24 * 60 * 60 * 1000
         }).cookie("accessToken", newAccessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 15 * 60 * 1000,
-            sameSite: "Strict",
+            sameSite: "None",
         });
 
         return res.status(200).json({
@@ -283,11 +292,11 @@ const logout = async (req, res) => {
         res.clearCookie("refreshToken", {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "None",
         }).clearCookie("accessToken", {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "None",
         });
 
         return res.status(200).json({
