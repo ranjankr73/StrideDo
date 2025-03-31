@@ -1,6 +1,6 @@
 # StrideDo - Modern Todo Application 🚀  
 
-![StrideDo Demo]([screenshot\homepage.png](https://github.com/ranjankr73/StrideDo/blob/main/screenshot/homepage.png))
+![StrideDo Demo](https://github.com/ranjankr73/StrideDo/blob/main/screenshot/homepage.png)
 
 **StrideDo** is a feature-rich todo application designed for seamless task management, robust authentication, and an exceptional user experience.
 
@@ -147,22 +147,22 @@ npm run dev
 ## 📸 Screenshots  
 
 **Login Form**
-![Login Form](screenshot\loginpage.png) 
+![Login Form](https://github.com/ranjankr73/StrideDo/blob/main/screenshot/loginpage.png) 
 
 **Signup Form**
-![Signup Form](screenshot\signuppage.png)  
+![Signup Form](https://github.com/ranjankr73/StrideDo/blob/main/screenshot/signuppage.png)
 
 **Dashboard**
-![Dashboard](screenshot\dashboard.png)
+![Dashboard](https://github.com/ranjankr73/StrideDo/blob/main/screenshot/dashboard.png)
 
 **New Task Form**
-![Form](screenshot\createtaskform.png) 
+![Form](https://github.com/ranjankr73/StrideDo/blob/main/screenshot/createtaskform.png)
 
 **Update Task Form**
-![Form](screenshot\updatetaskform.png) 
+![Form](https://github.com/ranjankr73/StrideDo/blob/main/screenshot/updatetaskform.png)
 
 **Contact Form**
-![Form](screenshot\contactform.png) 
+![Form](https://github.com/ranjankr73/StrideDo/blob/main/screenshot/contactform.png)
 
 ---
 
